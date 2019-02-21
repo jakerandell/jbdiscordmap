@@ -1,65 +1,34 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!doctype html>
 <html lang="en">
 <head>
-	<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>Homebrew Chat Member Map</title>
-  	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet">
+  	<!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet">-->
+  	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cyborg/bootstrap.min.css" rel="stylesheet">
   	<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
   		<!--[if lte IE 8]>
-  			<link href='http://api.tiles.mapbox.com/mapbox.js/v1.4.0/mapbox.ie.css' rel='stylesheet'>
+  			<link href='https://api.tiles.mapbox.com/mapbox.js/v1.4.0/mapbox.ie.css' rel='stylesheet'>
   		<![endif]-->
-  	<style>
-  		.starter-template {
-  			padding: 10px 15px 0px;
-  			text-align: center;
-  		}
-  		.submit-template {
-  			padding: 5px 15px 0px;
-  			text-align: center;
-  		}
-  		#map {
-  			height:400px;
-  			width:100%;
-  		}
-  		#centerpoint {
-  			display: none;
-  			width: 128px;
-  			height: 128px;
-  			background: transparent url(img/crosshair.png) 0 0 no-repeat scroll;
-  			overflow: visible;
-  			position: absolute;
-  			top: 50%;
-  			left: 50%;
-  			margin: -64px 0 0 -64px;
-  			pointer-events: none;
-  			z-index: 11;
-  			opacity: 1;
-  			-webkit-transition: opacity 0.25s;
-  			-moz-transition: opacity 0.25s;
-  			-o-transition: opacity 0.25s;
-  			-ms-transition: opacity 0.25s;
-  			transition: opacity 0.25s;
-  		}
-  	</style>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<!--ADD THE FORM EMBEDURL BELOW-->
-	<meta itemprop="embedUrl" content="https://docs.google.com/forms/d/1OskkCYjZLAdo-2bEeSBqEQNmweLtXmrJOOUGpZg8eMo/viewform?embedded=true">
+	<!--<meta itemprop="embedUrl" content="https://docs.google.com/forms/d/1OskkCYjZLAdo-2bEeSBqEQNmweLtXmrJOOUGpZg8eMo/viewform?embedded=true">-->
+	<meta itemprop="embedUrl" content="https://docs.google.com/forms/d/e/1FAIpQLSdAfoYB3QqDK8JIHUqoTBzss8HBM-s1k1fAWHTOBR7eY-mi7w/viewform?embedded=true">
 
 	<!--ADD THE FORM RESPONSE ACTION HERE, WITH A REDIRECT-->
 	<script type="text/javascript">var submitted=false;</script>
-	<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='http://dmofot.github.io/homebrewchat/results/';}"></iframe>
-	<form action="https://docs.google.com/forms/d/1OskkCYjZLAdo-2bEeSBqEQNmweLtXmrJOOUGpZg8eMo/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+	<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='https://jbmap.puck.sh/results/';}"></iframe>
+	<form action="https://docs.google.com/forms/d/e/1FAIpQLSdAfoYB3QqDK8JIHUqoTBzss8HBM-s1k1fAWHTOBR7eY-mi7w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
 		<div class="container">
 			<div class="jumbotron starter-template">
-				<h1>Homebrew Chat Member Map</h1>
+				<h1>Know It All Member Map</h1>
 			</div>
 			<div class="starter-template">
-				<h2><em>(1) </em>Where you at?<h2>
+				<h2>Where you at?</h2>
 				<p><small>Drag the map to center the marker on your general location</small></p>
-				<div id="map">
+				<div class="add-map" id="map">
 					<span id="centerpoint" class="" style="display: inline;">
 						<span class="shadow"></span>
 						<span class="x"></span>
@@ -67,8 +36,8 @@
 					</span>
 				</div>
 				<div class="starter-template">
-					<h2><em>(2) </em>What's your homebrew chat username?<h2>
-					<input class="form-control" name="entry.1916041296" value="" id="entry_1916041296" placeholder="Username">
+					<h2>What's your chat username?</h2>
+					<input class="form-control" name="entry.1233412684" value="" id="entry_1233412684" placeholder="Username">
 				</div>
 				<!-- ADD GOOGLEFORM-RELATED INPUTS HERE, ALL HIDDEN.
 				THEY'LL BE GIVEN VALUES IN THE SCRIPT BELOW
@@ -76,16 +45,15 @@
 				THOSE IN THE SOURCE OF THE GOOGLE-HOSTED LIVE FORM-->
 
 				<!-- QUESTION 2: LAT/LONG -->
-				<input type="hidden" name="entry.2119658880" value="" id="entry_2119658880">
-				<input type="hidden" name="entry.1984352115" value="" id="entry_1984352115">
+				<input type="hidden" name="entry.2067168800" value="" id="entry_2067168800">
+				<input type="hidden" name="entry.1646999572" value="" id="entry_1646999572">
 
 				<!-- PAGE STUFF -->
 				<input type="hidden" name="pageNumber" value="0">
 				<input type="hidden" name="backupCache" value="">
 			</div>
 			<div class="submit-template">
-				<h2>That's it! Thanks!<h2>
-				<input type="submit" name="submit" value="Submit" class="btn-lg btn-success">
+				<input type="submit" name="submit" value="Submit" class="btn-lg btn-primary btn-block mt-3">
 				<!-- Attribution
 				a repurposed @vtcraghead joint, modified by @dmofot
 				-->
@@ -93,25 +61,25 @@
 		</div>
 	</form>
 
-	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+	<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
 	<script type='text/javascript'>
 		// Set default location in case the IP doesn't have one
 		var y = 37.09024;
 		var x = -95.71289;
 		var z = 8;
-		$('#entry_2119658880').attr('value', y);
-		$('#entry_1984352115').attr('value', x);
+		$('#entry_2067168800').attr('value', y);
+		$('#entry_1646999572').attr('value', x);
 
 		// Build the map
-		L.mapbox.accessToken = 'your_api_key_here';
-		var map = L.mapbox.map('map', 'your_id_here.map_id_here', {scrollWheelZoom:false}).setView([y, x], z);
+		L.mapbox.accessToken = 'pk.eyJ1IjoicHVja2ZwdiIsImEiOiJjanNmMDM0MXkwbjYzNDRuc3NocXFnNnBqIn0.NQP1i4qrGSxh0VXZiclVoA';
+		var map = L.mapbox.map('map', 'mapbox.dark', {scrollWheelZoom:false}).setView([y, x], z);
 
 		// Update these values as the map gets dragged around
 		map.on('moveend', function(event) {
-			$('#entry_2119658880').attr('value', map.getCenter().lat);
-			$('#entry_1984352115').attr('value', map.getCenter().lng);
+			$('#entry_2067168800').attr('value', map.getCenter().lat);
+			$('#entry_1646999572').attr('value', map.getCenter().lng);
 		});
 
 		// Grab IP location from freegeoip API
@@ -119,10 +87,10 @@
 			if (json) {
 				y = json.latitude;
 				x = json.longitude;
-				z = 8
+				z = 8;
 				// Set form lat/lon fields from map center location
-				$('#entry_2119658880').attr('value', y);
-				$('#entry_1984352115').attr('value', x);
+				$('#entry_2067168800').attr('value', y);
+				$('#entry_1646999572').attr('value', x);
 				map.panTo([y, x]);
 			}
 		});

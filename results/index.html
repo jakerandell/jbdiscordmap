@@ -1,95 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
     <meta charset=utf-8 />
     <title>Homebrew Chat Members</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cyborg/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <style>
-        .leaflet-popup-content-wrapper {
-            background: #227FBB; !important
-        }
-        .leaflet-popup-tip {
-            border-top: 10px solid #227FBB; !important
-        }
-        div.marker-title {
-            color: #fff; !important
-        }
-        #content {
-            position:absolute;
-            left:0;
-            right:0;
-            height:150px;
-            bottom:0;
-            background:rgba(255, 255, 255, 0.9);
-        }
-        .sidecontainer {
-            padding:20px;
-        }
+
     </style>
 
-    <div id='map'></div>
+    <div class="result-map" id="map"></div>
 
-    <div id='content'>
-        <div class="sidecontainer">
-            <h1>Homebrew Chat Members</h1>
-            <h4>A map of participants in the <a target="_blank" href="https://homebrewchat.herokuapp.com">homebrewing</a> Slack community | <a target="_blank" href="http://dmofot.github.io/homebrewchat/">Add yourself!</a></h4>
+    <div id="content">
+        <div class="sidecontainer p-1">
+            <h3>Discord Chat Members</h3>
+            <p>A map of participants in the
+                <a target="_blank" href="https://www.patreon.com/thedroneracingengineer">FPV Know-it-all</a> Discord community
+                <a href="/" class="btn btn-primary btn-sm ml-2">Add yourself</a></p>
         </div>
     </div>
 
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-    <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
 
     <script>
-    $.getJSON("https://spreadsheets.google.com/feeds/list/1gNeN_1dzzSgfXKTcksIf_oTdUXJJFqPGsKQpSReHo3A/1/public/values?alt=json", function(data) {
-        L.mapbox.accessToken = 'your_api_key_here';
-        var map = L.mapbox.map('map', 'mapbox.mapbox-streets-v7')
+    $.getJSON("https://spreadsheets.google.com/feeds/list/1iynRZnqYMB3vsxXCPKemb0PdS5oBo67saZRX_gAvVZU/1/public/values?alt=json", function(data) {
+        L.mapbox.accessToken = 'pk.eyJ1IjoicHVja2ZwdiIsImEiOiJjanNmMDM0MXkwbjYzNDRuc3NocXFnNnBqIn0.NQP1i4qrGSxh0VXZiclVoA';
+        var map = L.mapbox.map('map', 'mapbox.dark');
 
-        var brewers = data.feed.entry;
+        var users = data.feed.entry;
 
-        var brewerGeojson = {type: 'FeatureCollection', features: []};
+        var userGeojson = {type: 'FeatureCollection', features: []};
 
-        for (var i in brewers) {
-            if (brewers[i].gsx$latitude.$t) {
+        for (var i in users) {
+            if (users[i].gsx$latitude.$t) {
                 var feature = {
                     type: 'Feature',
                     properties: {
-                        title: '<h1>' + brewers[i].gsx$name.$t + '</h1>',
+                        title: '<h1>' + users[i].gsx$name.$t + '</h1>',
                         'marker-color': '#227FBB',
                         'marker-size': 'large',
-                        'marker-symbol': 'beer',
-                        url: 'https://homebrewing.slack.com/team/' + brewers[i].gsx$name.$t
+                        'marker-symbol': 'heliport'
                     },
                     geometry: {
                         type: 'Point',
-                        coordinates: [brewers[i].gsx$longitude.$t, brewers[i].gsx$latitude.$t]
+                        coordinates: [users[i].gsx$longitude.$t, users[i].gsx$latitude.$t]
                     }
                 };
-                brewerGeojson.features.push(feature);
+                userGeojson.features.push(feature);
             }
         }
 
         var myLayer = L.mapbox.featureLayer().addTo(map);
 
-        myLayer.setGeoJSON(brewerGeojson);
+        myLayer.setGeoJSON(userGeojson);
         myLayer.on('mouseover', function(e) {
             e.layer.openPopup();
         });
         myLayer.on('mouseout', function(e) {
             e.layer.closePopup();
         });
-        myLayer.on('click', function(e) {
+        /*myLayer.on('click', function(e) {
             window.open(e.layer.feature.properties.url);
-        });
+        });*/
         map.setView([39.12367, -106.81229], 4);
         map.fitBounds(myLayer.getBounds());
     });
