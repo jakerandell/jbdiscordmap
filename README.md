@@ -1,7 +1,7 @@
-# homebrewchat
-homebrewing Slack community member map
+# fpvknowitall
+fpv discord community member map
 
-Add yourself to the map here: http://jbchat.puck.sh/homebrewchat/
+Add yourself to the map here: http://jbchat.puck.sh/
 
 See the results here: http://jbchat.puck.sh/homebrewchat/results/
 
